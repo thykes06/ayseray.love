@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>14.05.2025'ten Beri Aşkım | Doğum Günün Kutlu Olsun Ayşe'm!</title>
+    <title>Doğum Günün Kutlu Olsun Ayşem!</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Allura&display=swap" rel="stylesheet">
     <style>
@@ -152,11 +152,22 @@
         }
         /* Her fotoğrafın farklı yönden gelmesi için özel sınıflar */
         .photo-card.from-right {
-            transform: translateY(50px) translateX(100px);
+            transform: translateY(50px); /* Mobil için sadece dikey kaydırma */
         }
         .photo-card.from-left {
-            transform: translateY(50px) translateX(-100px);
+            transform: translateY(50px); /* Mobil için sadece dikey kaydırma */
         }
+
+        /* Orta ve büyük ekranlar için yatay kaydırma efekti */
+        @media (min-width: 768px) { /* md: breakpoint */
+            .photo-card.from-right {
+                transform: translateY(50px) translateX(100px);
+            }
+            .photo-card.from-left {
+                transform: translateY(50px) translateX(-100px);
+            }
+        }
+
         /* Görünür olduğunda son pozisyon */
         .photo-card.is-visible {
             opacity: 1;
@@ -383,6 +394,7 @@
                     const photoCard = document.createElement('div');
                     photoCard.classList.add('photo-card');
                     // Her fotoğrafı sırasıyla farklı bir yönden gelmesi için sınıf ekle
+                    // Yatay kaydırma animasyonunu sadece md ve üzeri ekranlarda uygula
                     if (index % 2 === 0) {
                         photoCard.classList.add('from-right');
                     } else {
